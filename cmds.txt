@@ -1,0 +1,29 @@
+# Build the container
+docker build -t dt-service:latest . 
+
+# Run container and map container port 8000 to host port 80
+docker run -p 80:8000 dt-service
+
+# In case time is not synced with host
+docker run -v /etc/localtime:/etc/localtime:ro -p 80:8000 dt-service
+
+# Run in detached mode with -d
+docker run -d -p 80:8000 dt-service
+
+# See container logs (stdout/stderr)
+docker logs -f 583729
+
+# Go inside a container
+docker exec -it 583729 bash
+
+# See built images
+docker image ls
+
+# See running containers
+docker container ls
+
+# Get a container from Docker hub
+docker pull wernight/funbox
+
+# Run the container
+docker run --rm -it wernight/funbox nyancat
